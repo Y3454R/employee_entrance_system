@@ -15,14 +15,14 @@ CREATE TABLE employees (
 -- Create verification table
 CREATE TABLE verification (
     id BIGSERIAL PRIMARY KEY,
-    employee_id INT REFERENCES employees(id),
+    employee_id INT REFERENCES employees(id) ON DELETE CASCADE,
     verification_token VARCHAR(100) NOT NULL
 );
 
 -- Create time_tracking table
 CREATE TABLE time_tracking (
     id BIGSERIAL PRIMARY KEY,
-    employee_id INT REFERENCES employees(id),
+    employee_id INT REFERENCES employees(id) ON DELETE CASCADE,
     checkin_time TIMESTAMP,
     checkout_time TIMESTAMP,
     working_hours NUMERIC(5, 2)
@@ -105,6 +105,32 @@ SELECT * FROM time_tracking;
 UPDATE time_tracking
 SET checkout_time = '2023-01-05 18:00:00'
 WHERE employee_id = 3;
+
+-- checking
+
+SELECT * FROM time_tracking;
+
+
+-- delete
+
+DELETE FROM employees
+WHERE id = 1;
+
+-- checking
+
+SELECT * FROM time_tracking;
+
+
+-- Update information for an employee
+UPDATE employees
+SET
+    email = 'new.email@example.com', 
+    position = 'New Position',         
+    department = 'New Department',     
+    phone_number = '9876543210'        
+WHERE
+    id = 2;
+
 
 -- checking
 
