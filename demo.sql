@@ -110,6 +110,21 @@ WHERE employee_id = 3;
 
 SELECT * FROM time_tracking;
 
+-- group by month and employee
+SELECT
+    EXTRACT(MONTH FROM checkin_time) AS month,
+    employee_id,
+    SUM(working_hours) AS total_working_hours
+FROM
+    time_tracking
+GROUP BY
+    EXTRACT(MONTH FROM checkin_time),
+    employee_id
+ORDER BY
+    employee_id,
+    EXTRACT(MONTH FROM checkin_time);
+
+
 
 -- delete
 
