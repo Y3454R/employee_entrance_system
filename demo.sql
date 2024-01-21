@@ -6,10 +6,11 @@ DROP TABLE IF EXISTS employees;
 -- Create employees table
 CREATE TABLE employees (
     id SERIAL PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
     email VARCHAR(255) UNIQUE NOT NULL,
     position VARCHAR(100) NOT NULL,
     department VARCHAR(100) NOT NULL,
-    phone_number VARCHAR(20) NOT NULL
+    phone_number VARCHAR(20) UNIQUE NOT NULL
 );
 
 -- Create verification table
